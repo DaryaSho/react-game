@@ -1,14 +1,15 @@
-import styled from 'styled-components'
-
-const Hello = styled.div`
-  text-align: center;
-  `
+import React from 'react';
+import Header from '../components/header';
+import Body from '../components/body';
+import Footer from '../components/footer';
 
 function App() {
   return (
-    <Hello className="App">
-      Hello
-    </Hello>
+    <div className="App">
+      <Header />
+      <Body />
+      <Footer />
+    </div>
   );
 }
 
