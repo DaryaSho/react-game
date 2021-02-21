@@ -11,10 +11,6 @@ export class Game extends React.Component {
     
 
     render() {
-      console.log(this.state.sudoku);
-      console.log(this.state.sudoku.getColumn(3));
-      console.log(this.state.sudoku.getRow(4));
-      console.log(this.state.sudoku.getSquare(5));
       return (<Container>table</Container>);
     }
   }
