@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-width: 60%;
+justify-content: center;
+align-items: center;
+margin: auto;
+border: 3px solid;
 `
 export const Row = styled.div`
 display: flex;
 `
 export const Cell = styled.div`
-width: 40px;
-height: 40px;
+width: 35px;
+height: 35px;
 border: 1px solid black;
 `

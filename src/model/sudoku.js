@@ -11,11 +11,11 @@ export class Sudoku {
         }
     }
 
-    getRow(index){
+    getColumn(index){
         return this.body.filter(element=> element.x === index);
     }
 
-    getColumn(index){
+    getRow(index){
         return this.body.filter(element=> element.y === index);
     }
 
