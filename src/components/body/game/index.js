@@ -14,14 +14,14 @@ export class Game extends React.Component {
     getColumn = (i) => {
       const {sudoku} = this.state;;
       return sudoku.getColumn(i).map((element) =>
-          <Cell>{element.value}</Cell>
+          <Cell key={element.index}>{element.value}</Cell>
         );
     };
 
     getTable = () => {
       const {sudoku} = this.state;;
       return sudoku.getRow(0).map((element) =>
-          <Row>{this.getColumn(element.x)}</Row>
+          <Row  key={element.x}>{this.getColumn(element.x)}</Row>
         );
     };
 
