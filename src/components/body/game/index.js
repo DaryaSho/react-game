@@ -9,8 +9,6 @@ export class Game extends React.Component {
         this.state = { sudoku: new Sudoku() };
     };
     
-
-
     getColumn = (i) => {
       const {sudoku} = this.state;;
       return sudoku.getColumn(i).map((element) =>
