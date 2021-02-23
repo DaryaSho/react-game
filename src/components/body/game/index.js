@@ -1,25 +1,24 @@
 import React from 'react';
 import { Sudoku } from '../../../model/sudoku';
-import { Container, Row, Cell } from './styles';
+import { Container, Square, Cell } from './styles';
 
 export class Game extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { sudoku: new Sudoku() };
+        this.state = { sudoku: new Sudoku(9) };
     };
-    /// good
-    getColumn = (i) => {
+    getSquare = (i) => {
       const {sudoku} = this.state;;
-      return sudoku.getColumn(i).map((element) =>
+      return sudoku.getSquare(i+1).map((element) =>
           <Cell key={element.index}>{element.value}</Cell>
         );
     };
 
     getTable = () => {
-      const {sudoku} = this.state;;
+      const {sudoku} = this.state;
       return sudoku.getRow(0).map((element) =>
-          <Row  key={element.x}>{this.getColumn(element.x)}</Row>
+          <Square  key={element.x}>{this.getSquare(element.x)}</Square>
         );
     };
 
