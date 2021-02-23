@@ -11,7 +11,6 @@ export class Sudoku {
         return Math.floor(Math.random(max) * Math.floor(max));
     }
 
-
     getColumn(index){
         return this.body.filter(element=> element.x === index);
     }
