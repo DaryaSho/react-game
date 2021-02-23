@@ -54,6 +54,7 @@ export class Sudoku {
         } 
     }
 
+    
     createBase(){
         for (let x = 0; x < this.size; x++) {
             for (let y = 0; y < this.size; y++) {
