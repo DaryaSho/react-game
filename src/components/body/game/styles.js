@@ -20,9 +20,10 @@ export const Cell = styled.div`
 width: 30px;
 height: 30px;
 border: 1px solid black;
-background: ${props => props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(105, 102, 255, 0.24)"};
+background: ${props => props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 238, 250, 0.65)"};
 margin: auto;
 &:hover {
-    background-color: rgba(67, 238, 250, 0.65);
+    /* background-color: rgba(67, 238, 250, 0.65); */
+    opacity: 0.5;
     }
 `;

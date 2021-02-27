@@ -1,10 +1,14 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Button } from "./styles";
  
 function GameControls() {
 
+  const newFame = () =>{
+    console.log("NEW GAME");
+  };
+
   return <Container>
-    Controll
+  <Button onClick={() => newFame()}>New game</Button>
   </Container>;
 }
  
