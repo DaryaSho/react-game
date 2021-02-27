@@ -13,17 +13,23 @@ display: flex;
 flex-wrap: wrap;
 width: 100px;
 height: 100px;
-border: 2px solid;
-margin: auto;
+border: 1px solid;
+margin: 2px;
+
 `;
-export const Cell = styled.div`
-width: 30px;
-height: 30px;
-border: 1px solid black;
-background: ${props => props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 238, 250, 0.65)"};
+export const Cell = styled.input`
+width: 27px;
+height: 27px; 
+text-align: center;
+font-size: 24px;
+border: 0px;
 margin: auto;
+background: ${props => !props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 238, 250, 0.65)"}; 
 &:hover {
-    /* background-color: rgba(67, 238, 250, 0.65); */
     opacity: 0.5;
-    }
+}
+&:focus{
+    opacity: 0.5;
+}
+
 `;

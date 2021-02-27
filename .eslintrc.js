@@ -16,7 +16,6 @@ module.exports = {
   ],
 
   "rules": {
-    "semi"                   : ["error", "always"],
     "quotes"                 : ["error", "double"],
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
     "for-direction"          : "error",

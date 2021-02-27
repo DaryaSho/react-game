@@ -1,12 +1,20 @@
 import React from "react";
 import { Sudoku } from "../../../model/sudoku";
 import { Container, Square, Cell } from "./styles";
+import PropTypes from "prop-types";
 
 export class Game extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = { sudoku: new Sudoku(9)};
+        // debugger;
+        console.log(props)
+        if(props.isNewGame) this.getNewGame();
+    }
+
+    getNewGame = () => {
+      this.setState({sudoku: new Sudoku(9)})
     }
 
     getTable = () => {
@@ -18,8 +26,8 @@ export class Game extends React.Component {
 
     getSquare = (i) => {
       const {sudoku} = this.state;
-      return sudoku.getSquare(i+1).map((element) =>
-          <Cell primary={element.square % 2} key={element.index}>{element.value}</Cell>
+      return sudoku.getSquare( i + 1 ).map((element) =>
+          <Cell primary={element.square % 2} key={element.index} defaultValue={element.value}></Cell>
         );
     };
 
@@ -27,3 +35,4 @@ export class Game extends React.Component {
       return (<Container>{this.getTable()}</Container>);
     }
   }
+  Game.propTypes = {isNewGame: PropTypes.bool};
