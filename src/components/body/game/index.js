@@ -14,7 +14,6 @@ export class Game extends React.Component {
           <Cell key={element.index}>{element.value}</Cell>
         );
     };
-
     getTable = () => {
       const {sudoku} = this.state;
       return sudoku.getRow(0).map((element) =>
