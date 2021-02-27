@@ -58,7 +58,6 @@ export class Sudoku {
             
         } 
     }
-
     
     swapRows(){
         const index = this.getRandomInt(8);
@@ -70,7 +69,6 @@ export class Sudoku {
             this.body[index_2*9+x].value = val;  
         } 
     }
-
     
     createBase(){
         let index = 0
