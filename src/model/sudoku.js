@@ -71,7 +71,7 @@ export class Sudoku {
     }
     
     createBase(){
-        let index = 0
+        let index = 0;
         for (let x = 0; x < this.size; x++) {
             for (let y = 0; y < this.size; y++) {
                 const number = Math.floor((x*Math.sqrt(this.size) + x/Math.sqrt(this.size) + y) % this.size + 1);
@@ -82,6 +82,6 @@ export class Sudoku {
     }
 
     setCell(x, y, value, isConst = false){
-        return{x, y, value, square:  3 * Math.floor(x/3) + Math.floor(y/3) + 1, isConst }
+        return{x, y, value, square:  3 * Math.floor(x/3) + Math.floor(y/3) + 1, isConst };
     }
 }
