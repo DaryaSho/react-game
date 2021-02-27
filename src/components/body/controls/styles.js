@@ -2,5 +2,5 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 text-align: center;
-width: 40%;
+width: 50%;
 `;
