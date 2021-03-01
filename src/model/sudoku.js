@@ -1,8 +1,10 @@
 export class Sudoku {
     
-    constructor(size) {
+    constructor(size, difficulty) {
         this.body = [];
         this.size = size;
+        this.answer = [];
+        this.difficulty = difficulty;
 
         this.create();
     }
@@ -26,13 +28,23 @@ export class Sudoku {
     create(){
         this.createBase();
         this.swap();
-        
+        this.answer = this.body;
+        this.createNullCell();
     }
 
+    createNullCell(){
+        for (let x = 0; x < this.difficulty.amount; x++) {
+            const index = this.getRandomInt(this.size * this.size);
+            if(this.body[index].value !== null)
+                {this.body[index].value = null;
+                this.body[index].isConst = false;}
+            else x--;
+            
+        }
+    }
     swap(){
         const count = this.getRandomInt(30) + 10;
         for (let index = 0; index < count; index++) {
-            
             this.swapRows();
             this.swapColumn();
         }

@@ -8,8 +8,16 @@ export class Body extends React.Component {
 
   constructor(props) {
       super(props);
-      debugger;
-      this.state = {sudoku: null, text: 1, difficulty: props.difficulty}
+      const difficulty = props.difficulty;
+      const sudoku = new Sudoku(9, difficulty);
+      this.state = ({sudoku, difficulty });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.difficulty !== prevProps.difficulty) {
+      const difficulty = this.props.difficulty;
+      this.setState({sudoku: new Sudoku(9, difficulty), difficulty });
+    }
   }
 
   handleChange = (event) => {
@@ -21,7 +29,8 @@ export class Body extends React.Component {
   }
 
   startNewGame = (value) => {
-    const sudoku = new Sudoku(9);
+    const { difficulty } = this.state;
+    const sudoku = new Sudoku(9, difficulty);
     debugger;
     this.setState({ sudoku, text: this.state.text + 1 });
   }
@@ -38,8 +47,9 @@ export class Body extends React.Component {
     const {sudoku} = this.state;
     return sudoku.getSquare( i + 1 ).map((element) =>
         <Cell primary={element.square % 2}
+        isConst={element.isConst}
          key={element.index}
-         value={element.value}
+         value={element.value || ""}
         //  type="number"
          name={element.index}
          maxLength="1"
@@ -50,7 +60,6 @@ export class Body extends React.Component {
   };
 
   render() {
-    const {text} = this.state;
     return (
     <Container>
       <SudokuContainer>{this.getTable()}</SudokuContainer>

@@ -5,10 +5,10 @@ import { DifficultyType } from "../../model/difficulty";
 
 function Header(props) {
 
-   const [difficulty, setDifficulty] = useState(DifficultyType[0]);
-   const [isOpenList, setOpenList] = useState(false);
+  const [difficulty, setDifficulty] = useState(DifficultyType[0]);
+  const [isOpenList, setOpenList] = useState(false);
 
-  const displayDifficulty = ()=>{
+  const displayDifficulty = () =>{
      return DifficultyType.map((dif) =>
         <DifficultyName key = {dif.index} onClick={()=>onChange(dif)} >{dif.name}</DifficultyName>
       );
