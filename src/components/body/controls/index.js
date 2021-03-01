@@ -4,15 +4,14 @@ import PropTypes from "prop-types";
  
 function GameControls(props) {
 
-  const newFame = () =>{
-    debugger;
+  const newGame = () =>{
     const { startNewGame } = props;
     if(startNewGame) startNewGame(true);
     console.log("NEW GAME");
   };
 
   return <Container>
-  <Button onClick={() => newFame()}>New game</Button>
+  <Button onClick={() => newGame()}>New game</Button>
   </Container>;
 }
 GameControls.propTypes = {startNewGame: PropTypes.func};

@@ -21,7 +21,7 @@ module.exports = {
     "for-direction"          : "error",
     "no-empty"               : ["error", { "allowEmptyCatch": true }],
     "no-dupe-keys"           : "error",
-    "no-func-assign"         : "error",
+    // "no-func-assign"         : "error",
     "no-sparse-arrays"       : "error",
     "eqeqeq"                 : ["error", "always"],
     "no-multi-spaces"        : ["error", { "ignoreEOLComments": true }],
