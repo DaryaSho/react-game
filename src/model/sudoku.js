@@ -3,7 +3,6 @@ export class Sudoku {
     constructor(size, difficulty) {
         this.body = [];
         this.size = size;
-        this.answer = [];
         this.difficulty = difficulty;
 
         this.create();
@@ -28,16 +27,15 @@ export class Sudoku {
     create(){
         this.createBase();
         this.swap();
-        this.answer = this.body;
         this.createNullCell();
     }
 
     createNullCell(){
         for (let x = 0; x < this.difficulty.amount; x++) {
             const index = this.getRandomInt(this.size * this.size);
-            if(this.body[index].value !== null)
-                {this.body[index].value = null;
-                this.body[index].isConst = false;}
+            if(this.body[index].defaultValue !== null)
+                {this.body[index].defaultValue = this.body[index].value;
+                this.body[index].isConst = true;}
             else x--;
             
         }
@@ -87,7 +85,7 @@ export class Sudoku {
         for (let x = 0; x < this.size; x++) {
             for (let y = 0; y < this.size; y++) {
                 const number = Math.floor((x * Math.sqrt(this.size) + x / Math.sqrt(this.size) + y) % this.size + 1);
-                this.body.push({x, y, value: number, square: 3 * Math.floor(x / 3) + Math.floor(y / 3) + 1, isConst: true, index}); 
+                this.body.push({x, y, defaultValue: "", value: number, square: 3 * Math.floor(x / 3) + Math.floor(y / 3) + 1, isConst: false, index}); 
                 index++;
             }    
         }

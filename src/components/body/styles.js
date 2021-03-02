@@ -33,7 +33,12 @@ font-size: 24px;
 border: 0px;
 margin: auto;
 font-weight: ${props => props.isConst ? 600 : 400}; 
-background: ${props => !props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 238, 250, 0.65)"}; 
+background: ${props => !props.isActive ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 238, 250, 0.65)"}; 
+ ${(props) => {
+     const { isValue } = props;
+     if(isValue) return "background: rgba(105, 102, 255, 0.24)";
+     }}
+
 &:hover {
     opacity: 0.5;
 }
@@ -41,3 +46,8 @@ background: ${props => !props.primary ? "rgba(85, 238, 248, 0.24)" : "rgba(67, 2
     opacity: 0.5;
 }
 `;
+
+// ${(props) => {
+//     const { isValue } = props;
+//     return `background: ${cropBorder || '0px'}`;
+//     }}

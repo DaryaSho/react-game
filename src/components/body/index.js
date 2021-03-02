@@ -10,7 +10,7 @@ export class Body extends React.Component {
       super(props);
       const difficulty = props.difficulty;
       const sudoku = new Sudoku(9, difficulty);
-      this.state = ({sudoku, difficulty });
+      this.state = ({sudoku, difficulty, activeElement: {x: -1, y: -1, defaultValue: "", value: "", square: 0, isConst: false } });
   }
 
   componentDidUpdate(prevProps) {
@@ -21,17 +21,26 @@ export class Body extends React.Component {
   }
 
   handleChange = (event) => {
-    debugger;
     const {sudoku} = this.state;
-    sudoku.body[event.target.name].value = event.target.value;
+    const index = event.target.name;
+    if(sudoku.body[index].isConst) return;
+    if(String(sudoku.body[index].value) !== event.target.value){
+      sudoku.body[index].defaultValue = "";
+    }
+    else sudoku.body[index].defaultValue = sudoku.body[index].value;
     
     this.setState({sudoku});
+  } 
+
+  onClickToCell = (event)=>{
+    const {sudoku, activeElement} = this.state;
+    const index = event.target.name;
+    this.setState({activeElement: sudoku.body[index]});
   }
 
   startNewGame = (value) => {
     const { difficulty } = this.state;
     const sudoku = new Sudoku(9, difficulty);
-    debugger;
     this.setState({ sudoku, text: this.state.text + 1 });
   }
 
@@ -44,18 +53,20 @@ export class Body extends React.Component {
   }
 
   getSquare = (i) => {
-    const {sudoku} = this.state;
+    const {sudoku, activeElement} = this.state;
     return sudoku.getSquare( i + 1 ).map((element) =>
-        <Cell primary={element.square % 2}
-        isConst={element.isConst}
+        <Cell 
+         primary={element.square % 2}
+         isConst={element.isConst}
+         isValue={element.defaultValue === activeElement.defaultValue}
+         isActive={activeElement.x === element.x || activeElement.y === element.y || activeElement.square === element.square}
          key={element.index}
-         value={element.value || ""}
-        //  type="number"
+         value={element.defaultValue || ""}
          name={element.index}
          maxLength="1"
-         pattern="\d [0-9]"
-        //  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-         onChange={this.handleChange}></Cell>
+         onChange={this.handleChange}
+         onClick={this.onClickToCell}></Cell>
+
       );
   };
 
