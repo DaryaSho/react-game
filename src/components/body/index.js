@@ -9,14 +9,18 @@ export class Body extends React.Component {
   constructor(props) {
       super(props);
       const difficulty = props.difficulty;
-      const sudoku = new Sudoku(9, difficulty);
-      this.state = ({sudoku, difficulty, activeElement: {x: -1, y: -1, defaultValue: "", value: "", square: 0, isConst: false } });
+      const localStorageSudoku = JSON.parse(localStorage.getItem("sudoku"));
+      const sudoku = new Sudoku(9, localStorageSudoku.difficulty, localStorageSudoku.body);
+      debugger;
+      this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.difficulty !== prevProps.difficulty) {
       const difficulty = this.props.difficulty;
-      this.setState({sudoku: new Sudoku(9, difficulty), difficulty });
+      const sudoku = new Sudoku(9, difficulty)
+      localStorage.setItem("sudoku", JSON.stringify(sudoku))
+      this.setState({sudoku: sudoku });
     }
   }
 
@@ -26,22 +30,23 @@ export class Body extends React.Component {
     if(sudoku.body[index].isConst) return;
     if(String(sudoku.body[index].value) !== event.target.value){
       sudoku.body[index].defaultValue = "";
+      return;
     }
-    else sudoku.body[index].defaultValue = sudoku.body[index].value;
-    
-    this.setState({sudoku});
+    sudoku.body[index].defaultValue = sudoku.body[index].value;
+    this.setState({activeElement: sudoku.body[index], sudoku})
   } 
 
   onClickToCell = (event)=>{
+    // if(event.target.value === "") return;
     const {sudoku, activeElement} = this.state;
     const index = event.target.name;
     this.setState({activeElement: sudoku.body[index]});
   }
 
   startNewGame = (value) => {
-    const { difficulty } = this.state;
-    const sudoku = new Sudoku(9, difficulty);
-    this.setState({ sudoku, text: this.state.text + 1 });
+    const { sudoku } = this.state;
+    const newSudoku = new Sudoku(9, sudoku.difficulty);
+    this.setState({ sudoku: newSudoku });
   }
 
   getTable = () => {
@@ -58,7 +63,7 @@ export class Body extends React.Component {
         <Cell 
          primary={element.square % 2}
          isConst={element.isConst}
-         isValue={element.defaultValue === activeElement.defaultValue}
+         isValue={activeElement.defaultValue && element.defaultValue === activeElement.defaultValue}
          isActive={activeElement.x === element.x || activeElement.y === element.y || activeElement.square === element.square}
          key={element.index}
          value={element.defaultValue || ""}

@@ -3,6 +3,7 @@ import Header from "./header";
 import Body from "./body";
 import Footer from "./footer";
 import { DifficultyType } from "../model/difficulty";
+import { AppContainer } from "./styled";
 
 function App() {
   const [difficulty, setDifficulty] = useState(DifficultyType[0]);
@@ -11,11 +12,11 @@ function App() {
     setDifficulty(name);
   }
   return (
-    <div className="App">
+    <AppContainer className="App">
       <Header onChangeDifficulty={onChangeDifficulty}/>
       <Body difficulty={ difficulty }/>
       <Footer />
-    </div>
+    </AppContainer>
   );
 }
 

@@ -6,6 +6,8 @@ width: 50%;
 `;
 
 export const Button = styled.button`
+font-family: 'Architects Daughter', cursive;
+font-size: 30px;
 width: 200px;
 height: 60px;
 background-color: green;

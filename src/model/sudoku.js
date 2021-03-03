@@ -1,11 +1,11 @@
 export class Sudoku {
     
-    constructor(size, difficulty) {
-        this.body = [];
+    constructor(size, difficulty, body) {
+        this.body = body ? body : [];
         this.size = size;
         this.difficulty = difficulty;
 
-        this.create();
+        if(!body) this.create();
     }
        
     getRandomInt(max) {

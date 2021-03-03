@@ -5,16 +5,18 @@ import { DifficultyType } from "../../model/difficulty";
 
 function Header(props) {
 
-  const [difficulty, setDifficulty] = useState(DifficultyType[0]);
+  const [difficulty, setDifficulty] = useState(JSON.parse(localStorage.getItem("difficulty") || "{}") || DifficultyType[0]);
+  // const [difficulty, setDifficulty] = useState(DifficultyType[0]);
   const [isOpenList, setOpenList] = useState(false);
 
   const displayDifficulty = () =>{
      return DifficultyType.map((dif) =>
-        <DifficultyName key = {dif.index} onClick={()=>onChange(dif)} >{dif.name}</DifficultyName>
+        <DifficultyName key = {dif.index} onClick={()=>onChange(dif)} isValue={dif.name === difficulty.name} >{dif.name}</DifficultyName>
       );
   }
   const onChange = (dif) => {
     setDifficulty(dif);
+    localStorage.setItem("difficulty", JSON.stringify(dif))
     const { onChangeDifficulty } = props;
     if(onChangeDifficulty) onChangeDifficulty(dif);
   }
