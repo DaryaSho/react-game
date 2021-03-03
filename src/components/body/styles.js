@@ -34,6 +34,7 @@ margin: 2px auto;
 text-align: center;
 font-size: 34px;
 border: 0px;
+color:  ${props => !props.isConst ? "rgba(54, 54, 54, 1)" : "rgb(0, 0, 0)"};
 font-weight: ${props => props.isConst ? 800 : 400}; 
 background: ${props => !props.isActive ? "rgba(213, 217, 214, 0.34)" : "rgba(11, 92, 29, 0.34)"}; 
 ${props => props.isValue ? "background: rgba(245, 123, 123, 0.42);" : ""}

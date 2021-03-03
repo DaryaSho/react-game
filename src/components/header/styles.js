@@ -41,3 +41,18 @@ export const Life = styled.img`
 height: 50px;
 margin-right: 5%;
 `;
+
+export const MusicContainer = styled.div`
+display: flex;
+padding-left: 20px;
+height: 45px;
+background: rgba(255,255,255,0.94);
+border-radius: 20px;
+`;
+
+export const MusicButton = styled.div`
+width: 100px;
+margin-left: 10px;
+border-radius: 20px;
+background: ${props => !props.isPause ? "rgba(245, 123, 123, 0.42)" : "rgba(11, 92, 29, 0.34)"}; 
+`;
