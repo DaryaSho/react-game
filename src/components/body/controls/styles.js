@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import { device } from "../../../model/device";
 
 export const Container = styled.div`
 text-align: center;
 width: 35%;
+@media ${device.tablet} { 
+    width: 100%;
+    }
 `;
 
 export const Button = styled.div`
@@ -17,6 +21,10 @@ cursor: pointer;
 :hover{
 opacity: 0.9;
 }
+@media ${device.tablet} { 
+    height: 50px;
+    font-size: 25px;
+    }
 `;
 
 export const NumberContainer = styled.div`
@@ -27,6 +35,7 @@ background: rgba(255, 255, 255, 0.64);
 
 export const Number = styled.div`
 font-size: 30px;
+
 width: 33%;
 cursor: pointer;
 ${props => props.isSelect ? "background: rgba(245, 123, 123, 0.42);" : ""}
@@ -34,12 +43,21 @@ ${props => props.isSelect ? "background: rgba(245, 123, 123, 0.42);" : ""}
 :hover{
     background: rgba(245, 123, 123, 0.42);
 }
+@media ${device.tablet} { 
+    height: 50px;
+    width: 20%;
+    font-size: 20px;
+    }
 `;
 
 export const Back = styled.img`
 width:50px;
+
 cursor: pointer;
 :hover{
     opacity: 0.5;
 }
+@media ${device.tablet} { 
+    width:40px;
+    }
 `;

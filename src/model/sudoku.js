@@ -5,11 +5,17 @@ export class Sudoku {
         this.size = size;
         this.difficulty = difficulty;
         this.history = history ? history : [];
-        this.emptyCellsCount = 81 - difficulty.amount; 
 
         if(!body) this.create();
     }
-       
+    
+    hasEmptyCells(){
+        debugger;
+        for (let x = 0; x < this.size * this.size; x++) {
+            if(this.body[x].defaultValue === "") return true;  
+        }
+        return false;
+    }
     getRandomInt(max) {
         return Math.floor(Math.random(max) * Math.floor(max));
     }
@@ -39,7 +45,6 @@ export class Sudoku {
                 {this.body[index].defaultValue = this.body[index].value;
                 this.body[index].isConst = true;}
             else x--;
-            
         }
     }
     swap(){

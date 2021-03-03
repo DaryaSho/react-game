@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import {MainContainer} from "../styled";
+import { device } from "../../model/device";
 
 export const Container = styled(MainContainer)`
 height: 20%;
 max-height: 100px;
 padding-top: 20px;
 font-size: 30px;
+@media ${device.tablet} { 
+    height: 10%;
+    font-size: 20px;
+    }
 `;
 
 export const DifficultyContainer = styled.div`
@@ -35,11 +40,18 @@ font-weight: ${props => props.isValue ? 600 : 400};
 
 export const LifeContainer = styled.div`
 width: 50%;
+@media ${device.tablet} { 
+    display: none;
+    }
+
 `;
 
 export const Life = styled.img`
 height: 50px;
 margin-right: 5%;
+@media ${device.tablet} { 
+    height: 40px; 
+    }
 `;
 
 export const MusicContainer = styled.div`

@@ -44,9 +44,10 @@ export class Body extends React.Component {
     }
     sudoku.body[index].defaultValue = sudoku.body[index].value;
     sudoku.history.push(index);
-    sudoku.emptyCellsCount--;
+
     localStorage.setItem("sudoku", JSON.stringify(sudoku));
     this.setState({activeElement: sudoku.body[index], sudoku});
+    if(!sudoku.hasEmptyCells()) alert("YOU WON !!!")
   } 
 
   onClickToCell = (event)=>{
