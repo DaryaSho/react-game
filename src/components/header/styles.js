@@ -2,13 +2,10 @@ import styled from "styled-components";
 import {MainContainer} from "../styled";
 
 export const Container = styled(MainContainer)`
-/* text-align: center; */
-/* width: 100%; */
-/* border: 1px solid black; */
 height: 20%;
-min-height: 100px;
-/* display: flex; */
-/* font-family: 'Architects Daughter', cursive; */
+max-height: 100px;
+padding-top: 20px;
+font-size: 20px;
 `;
 
 export const DifficultyContainer = styled.div`
@@ -29,4 +26,13 @@ font-weight: ${props => props.isValue ? 600 : 400};
 &:hover {
     opacity: 0.7;
 }
+`;
+
+export const LifeContainer = styled.div`
+width: 50%;
+`;
+
+export const Life = styled.img`
+height: 50px;
+margin-right: 5%;
 `;

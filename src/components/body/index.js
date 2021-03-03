@@ -11,7 +11,6 @@ export class Body extends React.Component {
       const difficulty = props.difficulty;
       const localStorageSudoku = JSON.parse(localStorage.getItem("sudoku"));
       const sudoku = new Sudoku(9, localStorageSudoku.difficulty, localStorageSudoku.body);
-      debugger;
       this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
   }
 
@@ -27,9 +26,11 @@ export class Body extends React.Component {
   handleChange = (event) => {
     const {sudoku} = this.state;
     const index = event.target.name;
+    const { onError } = this.props;
     if(sudoku.body[index].isConst) return;
     if(String(sudoku.body[index].value) !== event.target.value){
       sudoku.body[index].defaultValue = "";
+      if(onError) onError()
       return;
     }
     sudoku.body[index].defaultValue = sudoku.body[index].value;
@@ -83,5 +84,5 @@ export class Body extends React.Component {
     </Container>);
   }
 }
-Body.propTypes = {difficulty: PropTypes.object};
+Body.propTypes = {difficulty: PropTypes.object, onError: PropTypes.func, numberOfLives: PropTypes.number};
 export default Body;

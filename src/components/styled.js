@@ -11,6 +11,7 @@ export const AppContainer = styled.div`
   text-align: center;
   font-family: 'Architects Daughter', cursive;
   background-image: url("fon.jpg");
-  background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   height: calc(100vh);
 `;
