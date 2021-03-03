@@ -16,7 +16,9 @@ function App() {
   }
 
   const onError = () => {
-    setLife(--numberOfLives);
+    console.log(--numberOfLives);
+    setLife(numberOfLives);
+    //setLife(--numberOfLives);
   }
 
   return (

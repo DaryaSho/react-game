@@ -7,17 +7,6 @@ function Header(props) {
 
   const [difficulty, setDifficulty] = useState(JSON.parse(localStorage.getItem("difficulty") || "{}") || DifficultyType[0]);
   const [isOpenList, setOpenList] = useState(false);
-  const [numberOfLives, setLife] = useState(props.numberOfLives);
-
-  useEffect(
-    () => {
-      const lives = props.numberOfLives;
-      return () => {
-        setLife(lives);
-      };
-    },
-    [props.numberOfLives],
-  );
     
   const displayDifficulty = () =>{
      return DifficultyType.map((dif) =>
@@ -33,7 +22,7 @@ function Header(props) {
 
   const displayLife = () => {
     const lives = [];
-    for (let index = 0; index < numberOfLives; index++) {
+    for (let index = 0; index < props.numberOfLives; index++) {
       lives.push(index)
     }
     return lives.map((life) =>

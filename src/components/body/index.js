@@ -10,7 +10,7 @@ export class Body extends React.Component {
       super(props);
       const localStorageSudoku = JSON.parse(localStorage.getItem("sudoku"));
       const sudoku = new Sudoku(9, localStorageSudoku.difficulty, localStorageSudoku.body);
-      this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
+      this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false }, selectNumber: 0 });
   }
 
   componentDidUpdate(prevProps) {
@@ -33,14 +33,21 @@ export class Body extends React.Component {
       return;
     }
     sudoku.body[index].defaultValue = sudoku.body[index].value;
+    localStorage.setItem("sudoku", JSON.stringify(sudoku));
     this.setState({activeElement: sudoku.body[index], sudoku})
   } 
 
   onClickToCell = (event)=>{
-    // if(event.target.value === "") return;
-    const {sudoku} = this.state;
+    const {sudoku, selectNumber} = this.state;
     const index = event.target.name;
+    event.target.value = selectNumber;
+
     this.setState({activeElement: sudoku.body[index]});
+    this.handleChange(event);
+  }
+
+  onChangeNumber = (selectNumber) => {
+    this.setState({ selectNumber, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
   }
 
   startNewGame = (value) => {
@@ -58,12 +65,12 @@ export class Body extends React.Component {
   }
 
   getSquare = (i) => {
-    const {sudoku, activeElement} = this.state;
+    const {sudoku, activeElement, selectNumber} = this.state;
     return sudoku.getSquare( i + 1 ).map((element) =>
         <Cell 
          primary={element.square % 2}
          isConst={element.isConst}
-         isValue={activeElement.defaultValue && element.defaultValue === activeElement.defaultValue}
+         isValue={(selectNumber && selectNumber === element.defaultValue) || (activeElement.defaultValue && element.defaultValue === activeElement.defaultValue)}
          isActive={activeElement.x === element.x || activeElement.y === element.y || activeElement.square === element.square}
          key={element.index}
          value={element.defaultValue || ""}
@@ -79,7 +86,7 @@ export class Body extends React.Component {
     return (
     <Container>
       <SudokuContainer>{this.getTable()}</SudokuContainer>
-      <GameControls startNewGame={this.startNewGame}/>
+      <GameControls startNewGame={this.startNewGame} onChangeNumber={this.onChangeNumber}/>
     </Container>);
   }
 }

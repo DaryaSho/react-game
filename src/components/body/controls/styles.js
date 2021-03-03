@@ -18,3 +18,20 @@ cursor: pointer;
 opacity: 0.9;
 }
 `;
+
+export const NumberContainer = styled.div`
+display:flex;
+flex-wrap: wrap;
+background: rgba(255, 255, 255, 0.64);
+`;
+
+export const Number = styled.div`
+font-size: 30px;
+width: 33%;
+cursor: pointer;
+${props => props.isSelect ? "background: rgba(245, 123, 123, 0.42);" : ""}
+
+:hover{
+    background: rgba(245, 123, 123, 0.42);
+}
+`;
