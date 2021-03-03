@@ -8,7 +8,6 @@ export class Body extends React.Component {
 
   constructor(props) {
       super(props);
-      const difficulty = props.difficulty;
       const localStorageSudoku = JSON.parse(localStorage.getItem("sudoku"));
       const sudoku = new Sudoku(9, localStorageSudoku.difficulty, localStorageSudoku.body);
       this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
@@ -39,7 +38,7 @@ export class Body extends React.Component {
 
   onClickToCell = (event)=>{
     // if(event.target.value === "") return;
-    const {sudoku, activeElement} = this.state;
+    const {sudoku} = this.state;
     const index = event.target.name;
     this.setState({activeElement: sudoku.body[index]});
   }

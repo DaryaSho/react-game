@@ -8,14 +8,15 @@ import { AppContainer } from "./styled";
 function App() {
   const [difficulty, setDifficulty] = useState(JSON.parse(localStorage.getItem("difficulty") || "{}") || DifficultyType[0]);
   let [numberOfLives, setLife] = useState(3);
+
   const onChangeDifficulty = (name) => {
     console.log("onChangeDifficulty");
     setDifficulty(name);
+    setLife(3);
   }
 
   const onError = () => {
-    numberOfLives--;
-    setLife(numberOfLives);
+    setLife(--numberOfLives);
   }
 
   return (

@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 text-align: center;
-width: 50%;
+width: 35%;
 `;
 
-export const Button = styled.button`
+export const Button = styled.div`
 font-family: 'Architects Daughter', cursive;
-font-size: 30px;
-width: 200px;
-height: 60px;
-background-color: green;
+font-size: 40px;
+padding-top: 23px;
+height: 80px;
+color: white;
+background-color: rgba(11,92,29,0.8);
 text-align: center;
-border: 1px solid black;
 cursor: pointer;
 :hover{
 opacity: 0.9;
