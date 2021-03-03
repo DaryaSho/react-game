@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Container, Button, NumberContainer, Number } from "./styles";
+import { Container, Button, NumberContainer, Number, Back } from "./styles";
 import PropTypes from "prop-types";
  
 function GameControls(props) {
@@ -12,20 +12,29 @@ function GameControls(props) {
   };
 
   const onClickNumber = (number) => {
-    setSelectNumber(number);
+    const num = selectNumber === number ? 0 : number;
+    setSelectNumber(num);
     const { onChangeNumber } = props;
-    if(onChangeNumber) onChangeNumber(number);
+    if(onChangeNumber) onChangeNumber(num);
   }
   const displayNumbers = () =>{
     return numbers.map((number, index) =>
     <Number key = {index} isSelect={number === selectNumber} onClick={() => onClickNumber(number)}>{number}</Number>
   );
   }
+  const onClickBack = (number) => {
+    const { onChangekBack } = props;
+    if(onChangekBack) onChangekBack();
+  }
 
   return <Container>
   <Button onClick={() => newGame()}>New game</Button>
   <NumberContainer>{displayNumbers()}</NumberContainer>
+  {!props.isHistoryEmpty && <Back src="back.png" alt="back" width="50px" onClick={() => onClickBack()}></Back>}
   </Container>;
 }
-GameControls.propTypes = {startNewGame: PropTypes.func, onChangeNumber: PropTypes.func};
+GameControls.propTypes = {
+startNewGame  : PropTypes.func, onChangeNumber: PropTypes.func, onChangekBack : PropTypes.func,
+  isHistoryEmpty: PropTypes.bool 
+};
 export default GameControls;

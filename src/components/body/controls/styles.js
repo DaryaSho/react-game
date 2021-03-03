@@ -35,3 +35,11 @@ ${props => props.isSelect ? "background: rgba(245, 123, 123, 0.42);" : ""}
     background: rgba(245, 123, 123, 0.42);
 }
 `;
+
+export const Back = styled.img`
+width:50px;
+cursor: pointer;
+:hover{
+    opacity: 0.5;
+}
+`;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, SudokuContainer, Square, Cell } from "./styles";
+import { DifficultyType } from "../../model/difficulty";
 import GameControls from "./controls";
 import PropTypes from "prop-types";
 import { Sudoku } from "../../model/sudoku";
@@ -9,7 +10,7 @@ export class Body extends React.Component {
   constructor(props) {
       super(props);
       const localStorageSudoku = JSON.parse(localStorage.getItem("sudoku"));
-      const sudoku = new Sudoku(9, localStorageSudoku.difficulty, localStorageSudoku.body);
+      const sudoku = new Sudoku(9, localStorage.getItem("difficulty") || DifficultyType[0], localStorageSudoku?.body || [], localStorageSudoku?.history || []);
       this.state = ({sudoku, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false }, selectNumber: 0 });
   }
 
@@ -20,6 +21,15 @@ export class Body extends React.Component {
       localStorage.setItem("sudoku", JSON.stringify(sudoku))
       this.setState({sudoku: sudoku });
     }
+  }
+
+  onChangekBack = () =>{
+    const {sudoku} = this.state;
+    if(sudoku.history.length === 0) return;
+    const index = sudoku.history.pop();
+    sudoku.body[index].defaultValue = "";
+    localStorage.setItem("sudoku", JSON.stringify(sudoku))
+    this.setState({sudoku: sudoku });
   }
 
   handleChange = (event) => {
@@ -33,8 +43,10 @@ export class Body extends React.Component {
       return;
     }
     sudoku.body[index].defaultValue = sudoku.body[index].value;
+    sudoku.history.push(index);
+    sudoku.emptyCellsCount--;
     localStorage.setItem("sudoku", JSON.stringify(sudoku));
-    this.setState({activeElement: sudoku.body[index], sudoku})
+    this.setState({activeElement: sudoku.body[index], sudoku});
   } 
 
   onClickToCell = (event)=>{
@@ -43,10 +55,12 @@ export class Body extends React.Component {
     event.target.value = selectNumber;
 
     this.setState({activeElement: sudoku.body[index]});
-    this.handleChange(event);
+    if(selectNumber !== 0) this.handleChange(event);
   }
 
-  onChangeNumber = (selectNumber) => {
+  onChangeNumber = (number) => {
+    let { selectNumber } = this.state;
+    selectNumber = selectNumber === number ? 0 : number;
     this.setState({ selectNumber, activeElement: {x: -1, y: -1, defaultValue: 0, value: "", square: 0, isConst: false } });
   }
 
@@ -86,7 +100,7 @@ export class Body extends React.Component {
     return (
     <Container>
       <SudokuContainer>{this.getTable()}</SudokuContainer>
-      <GameControls startNewGame={this.startNewGame} onChangeNumber={this.onChangeNumber}/>
+      <GameControls startNewGame={this.startNewGame} onChangeNumber={this.onChangeNumber} onChangekBack={this.onChangekBack} isHistoryEmpty={this.state.sudoku.history.length === 0}/>
     </Container>);
   }
 }

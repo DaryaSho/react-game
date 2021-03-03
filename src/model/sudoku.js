@@ -1,9 +1,11 @@
 export class Sudoku {
     
-    constructor(size, difficulty, body) {
+    constructor(size, difficulty, body, history) {
         this.body = body ? body : [];
         this.size = size;
         this.difficulty = difficulty;
+        this.history = history ? history : [];
+        this.emptyCellsCount = 81 - difficulty.amount; 
 
         if(!body) this.create();
     }
