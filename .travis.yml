@@ -5,12 +5,6 @@ node_js:
 cache:
   directories:
     - "node_modules"
-
-script:
-  - npm test
-  - npm run build
-  - echo my-custom-domain.ru > build/CNAME
-
 deploy:
   provider: pages
   github-token:  c159c2a8dea30b80b7cc18fad4a0c6f107a3961e   # Set in the settings page of your repository, as a secure variable
