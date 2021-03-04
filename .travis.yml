@@ -19,6 +19,6 @@ deploy:
   keep-history: true
   local-dir: build
   repo: DaryaSho / react-game
-  target-branch: master
+  target-branch: react-game
   on:
-    branch: master
+    branch: react-game
