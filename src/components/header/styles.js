@@ -40,17 +40,13 @@ font-weight: ${props => props.isValue ? 600 : 400};
 
 export const LifeContainer = styled.div`
 width: 50%;
-@media ${device.tablet} { 
-    display: none;
-    }
-
 `;
 
 export const Life = styled.img`
 height: 50px;
 margin-right: 5%;
 @media ${device.tablet} { 
-    height: 40px; 
+    display: none;
     }
 `;
 
