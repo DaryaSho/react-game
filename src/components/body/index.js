@@ -33,6 +33,7 @@ export class Body extends React.Component {
   }
 
   handleChange = (event) => {
+    debugger;
     const {sudoku} = this.state;
     const index = event.target.name;
     const { onError } = this.props;
