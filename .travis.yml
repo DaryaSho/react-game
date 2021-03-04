@@ -1,18 +1,17 @@
 language: node_js
 node_js:
-- '9.11'
-
+  - "stable"
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+script:
+  - npm test
+  - npm run build
 deploy:
   provider: pages
-  github-token:  c159c2a8dea30b80b7cc18fad4a0c6f107a3961e   # Set in the settings page of your repository, as a secure variable
-  committer-from-gh: true
-  skip-cleanup: true
-  keep-history: true
-  local-dir: build
+  skip_cleanup: true
   repo: DaryaSho / react-game
-  target-branch: react-game
+  github_token: c159c2a8dea30b80b7cc18fad4a0c6f107a3961e
+  local_dir: build
   on:
-    branch: react-game
+    branch: master
