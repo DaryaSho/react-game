@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: pages
+  skip_cleanup: true
+  repo: DaryaSho / react-game
+  github_token: c159c2a8dea30b80b7cc18fad4a0c6f107a3961e
+  local_dir: demo
+  on:
+    branch: master
