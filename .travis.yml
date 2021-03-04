@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '9.11'
+
+cache:
+  directories:
+    - "node_modules"
+
+script:
+  - yarn test
+  - yarn build
+  - echo my-custom-domain.ru > build/CNAME
+
+deploy:
+  provider: pages
+  github-token:  c159c2a8dea30b80b7cc18fad4a0c6f107a3961e   # Set in the settings page of your repository, as a secure variable
+  committer-from-gh: true
+  skip-cleanup: true
+  keep-history: true
+  local-dir: build
+  repo: DaryaSho / react-game
+  target-branch: master
+  on:
+    branch: master
